@@ -2,9 +2,6 @@ import '../styles/Table.css'
 import React, {useState, useEffect, useMemo} from "react";
 import ArrowDown from '@rsuite/icons/ArrowDown';
 import ArrowUp from '@rsuite/icons/ArrowUp';
-import logo from '../assets/premier-league-1.svg';
-import {teams} from "../helpers/Teams";
-import Schedule from "./Schedule";
 
 
 const Table = () => {

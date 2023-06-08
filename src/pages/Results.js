@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {teams} from "../helpers/Teams";
-import '../styles/Schedule.css'
+import '../styles/Results.css'
 
 
-const Schedule = () => {
+const Results = () => {
 
 	const [scheduleData, setScheduleData] = useState(new Map());
 
@@ -25,6 +25,7 @@ const Schedule = () => {
 		}
 
 	}, []);
+
 
 	const getCellColor = (match) => {
 		const cellClass = 'team-item';
@@ -101,4 +102,4 @@ const Schedule = () => {
 	);
 };
 
-export default Schedule;
+export default Results;
