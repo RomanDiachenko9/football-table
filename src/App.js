@@ -1,25 +1,25 @@
-import './app.css';
+import './App.css';
 import React, {useState} from "react";
-import Table from "../table/table"
-import InputData from "../input-data/input-data";
-import Schedule from "../schedule/schedule";
-
-import { NavigationLayout, Tab } from '../navigation-layout/navigation-layout';
+import Table from "./pages/Table"
+import InputData from "./pages/InputData";
+import Schedule from "./pages/Schedule";
+import Navbar from "../src/components/Navbar";
+import Footer from "../src/components/Footer";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 
 function App() {
-
-
-	const [tab, setTab] = useState(Tab.TABLE);
 	return (
 		<div className="App">
-			<NavigationLayout changePage={setTab} currentPage={tab}>
-				{
-					tab === Tab.TABLE
-						? <Table/>
-						: <InputData/>
-				}
-			</NavigationLayout>
+			<Router>
+				<Navbar/>
+				<Routes>
+					<Route path="/input" exact element={<InputData/>} />
+					<Route path="/table" exact element={<Table/>} />
+					<Route path="/schedule" element={<Schedule/>} />
+				</Routes>
+			<Footer/>
+			</Router>
 		</div>
 
 	);

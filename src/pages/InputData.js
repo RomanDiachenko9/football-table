@@ -2,7 +2,11 @@ import '../styles/InputData.css';
 import React, {useEffect, useMemo, useState} from "react";
 import {Button, Input, SelectPicker, Message} from "rsuite";
 import FormGroup from "rsuite/FormGroup";
-import {teams} from '../helpers/teams';
+import {teams} from '../helpers/Teams';
+import CheckIcon from '@mui/icons-material/Check';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import { Link } from "react-router-dom";
 
 
 
@@ -113,20 +117,26 @@ const InputData = () => {
 		return days;
 	}, []);
 
+	const resetData = () => {
+		setMatches([]);
+		localStorage.clear();
+	}
+
 	return (
 		<div className="input-table">
-			<div className="match-day">
-				<h2>MatchDay #</h2>
-				<SelectPicker
-					data={daysData}
-					value={selectedMatchDay}
-					onChange={setSelectedMatchDay}
-					cleanable={false}
-					searchable={false}
-					className="match-day-picker"
-				/>
-			</div>
+
 			<div className="input-results">
+				<div className="match-day">
+					<h2>MatchDay #</h2>
+					<SelectPicker
+						data={daysData}
+						value={selectedMatchDay}
+						onChange={setSelectedMatchDay}
+						cleanable={false}
+						searchable={false}
+						className="match-day-picker"
+					/>
+				</div>
 				{
 					matches.map((match, i) => (
 						<div className='select'
@@ -185,12 +195,22 @@ const InputData = () => {
 			</div>
 			<div className="outButton">
 				<Button
-					className="submit"
+					className="button"
 					onClick={submitResults}
 					disabled={saveButton}
+					style={{backgroundColor: "green"}}
 				>
-					Submit
+					<CheckIcon/>&nbsp;Submit
 				</Button>
+				<Button style={{backgroundColor: "red"}}
+				        className="button"
+				onClick={resetData}><DeleteForeverIcon/>&nbsp;Delete
+				</Button>
+				<Link to="/table">
+					<Button style={{backgroundColor: "lightgray"}}
+				            className="button"><TableChartIcon/>&nbsp;Table
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);

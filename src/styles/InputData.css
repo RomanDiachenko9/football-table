@@ -1,9 +1,18 @@
-h2 {
-    color: #4E4376;
+.input-table {
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    color: black;
+    width: 100%;
+    padding-top: 50px;
+}
+
+.select {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .input-score {
     text-align: center;
@@ -30,10 +39,13 @@ h2 {
 }
 
 .match-day {
-    width: 100%;
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
+    padding: 30px 0 30px 0;
+    /*padding-bottom: 20px;*/
+    font-family: "Trebuchet MS";
 }
 
 .match-day-picker {
@@ -53,15 +65,20 @@ h2 {
     text-align: center;
 }
 
-.submit {
-    width: 100px;
-    margin: 0 auto;
+.outButton {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.input-table {
-    color: #2c2b31;
-    width: 100%;
+.button {
+    width: 100px;
+    height: 40px;
+    margin-right: 10px;
 }
+
+
 
 .input-results {
     padding-top: 30px;

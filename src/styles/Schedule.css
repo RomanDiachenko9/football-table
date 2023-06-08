@@ -1,0 +1,53 @@
+.container-schedule {
+    padding-top: 120px;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+.team-item {
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    border: 1px solid black;
+}
+
+.team-item-not-exist {
+    background-color: black;
+}
+
+.team-win {
+    background-color: #02fb76;
+}
+
+.team-lose {
+    background-color: #de3a8f;
+}
+
+.team-draw {
+    background-color: #f2f634;
+}
+
+.schedule-description {
+    padding-top: 30px;
+}
+
+.description {
+    display: flex;
+}
+
+h6 {
+    color: black;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+h7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
