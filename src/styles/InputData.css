@@ -1,0 +1,90 @@
+h2 {
+    color: #4E4376;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-score {
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    max-width: 50px;
+    min-width: 50px;
+    border-radius: 10px;
+    background: #F4A261;
+}
+
+
+.choose-team {
+    border-width: 2px;
+    color: #212025;
+    background: #C5CDF9;
+    border-radius: 10px;
+    height: 40px;
+    max-width: 160px;
+    min-width: 160px;
+    font-family: "Trebuchet MS";
+    font-size: 15px;
+    text-align: center;
+}
+
+.match-day {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-day-picker {
+    margin-left: 20px;
+}
+
+.game-day {
+    border-width: 2px;
+    border-radius: 5px;
+    color: #212025;
+    background: #FFC52D;
+    margin-left: 10px;
+    height: 40px;
+    max-width: 50px;
+    min-width: 50px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.submit {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.input-table {
+    color: #2c2b31;
+    width: 100%;
+}
+
+.input-results {
+    padding-top: 30px;
+}
+
+
+.input-team{
+    width: 200px;
+}
+
+.input-score {
+    width: 50px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.match {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}

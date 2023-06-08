@@ -1,16 +1,6 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  animation: ani 2.5s forwards;
 }
 
 .App-header {
@@ -36,3 +26,14 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  width: auto;
+  color: #ddd;
+  padding: 50px;
+  font-family: "Trebuchet MS";
+  background: linear-gradient(90deg, #6848c1, #91b4ca, #6848c1);
+}
+
+
+

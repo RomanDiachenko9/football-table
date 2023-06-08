@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import './app.css';
+import React, {useState} from "react";
+import Table from "../table/table"
+import InputData from "../input-data/input-data";
+import Schedule from "../schedule/schedule";
+
+import { NavigationLayout, Tab } from '../navigation-layout/navigation-layout';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+	const [tab, setTab] = useState(Tab.TABLE);
+	return (
+		<div className="App">
+			<NavigationLayout changePage={setTab} currentPage={tab}>
+				{
+					tab === Tab.TABLE
+						? <Table/>
+						: <InputData/>
+				}
+			</NavigationLayout>
+		</div>
+
+	);
 }
 
 export default App;
