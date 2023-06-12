@@ -17,7 +17,6 @@ const Navbar = () => {
 	}
 
 
-
 	return (
 		<div className="navbar">
 			<div className="leftSide" id={openLinks ? "open" : "close"}>

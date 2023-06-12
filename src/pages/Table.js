@@ -22,7 +22,6 @@ const Table = () => {
 
 
 
-
 	const sortData = (name, data) => {
 		if (data) {
 			const sortedArr = [...data];
