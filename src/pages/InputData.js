@@ -7,18 +7,18 @@ import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import { Link } from "react-router-dom";
-import RemindIcon from '@rsuite/icons/legacy/Remind';
-
 
 
 const InputData = () => {
-
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
 	const [saveButton, setSaveButton] = useState(false);
 
+	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
+	const checkSameTeams = () => {
 
-	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id}))
+	}
+
 
 
 	const submitResults = () => {
@@ -65,13 +65,12 @@ const InputData = () => {
 	}
 
 
-	useEffect(()=> {
+	const refill = () => {
 		const daysData = JSON.parse(localStorage.getItem('tableDataTeam'));
 		const matchesData = JSON.parse(localStorage.getItem('matchDays'));
 
 		if (daysData) {
 			const matchDayData = matchesData.find(day => day.selectedMatchDay === selectedMatchDay);
-
 			if (matchDayData) {
 				setSaveButton(true);
 				setMatches(matchDayData.matches);
@@ -92,8 +91,12 @@ const InputData = () => {
 			setMatches(newCheck);
 			setSaveButton(false);
 		}
-	}, [selectedMatchDay]);
+	}
 
+
+	useEffect(()=> {
+		refill();
+	}, [selectedMatchDay]);
 
 
 
@@ -119,10 +122,28 @@ const InputData = () => {
 		return days;
 	}, []);
 
+
 	const resetData = () => {
-		setMatches([]);
 		localStorage.clear();
+		refill();
 	}
+
+
+	const TeamImage = ({ data }) => {
+		return (
+			<div className="dropdown-item">
+				<img src={ data.img } alt={data.team} style={{ height: 20, width: 20, opacity: data.disabled ? 0.7 : 1 }}/>&nbsp;&nbsp;
+				<span>{ data.team }</span>
+			</div>
+		)
+	}
+	const showItem = (img, team) => {
+		const data = {img, team}
+
+		return <TeamImage data={data}/>
+	}
+
+
 
 	return (
 		<div className="input-table">
@@ -135,7 +156,7 @@ const InputData = () => {
 						value={selectedMatchDay}
 						onChange={setSelectedMatchDay}
 						cleanable={false}
-						searchable={false}
+						searchable={true}
 						className="match-day-picker"
 					/>
 				</div>
@@ -148,7 +169,10 @@ const InputData = () => {
 								data={selectPickerData}
 								value={match.homeTeamId}
 								disabled={saveButton}
-								searchable={false}
+								searchable={true}
+								renderMenuItem={(label, item) => {
+									return showItem(item['img'], item.label)
+								}}
 								onChange={value => {
 									const newArray = [...matches];
 									newArray[i].homeTeamId = value;
@@ -184,7 +208,10 @@ const InputData = () => {
 								data={selectPickerData}
 								value={match.awayTeamId}
 								disabled={saveButton}
-								searchable={false}
+								searchable={true}
+								renderMenuItem={(label, item) => {
+									return showItem(item['img'], item.label)
+								}}
 								onChange={value => {
 									const newArray = [...matches];
 									newArray[i].awayTeamId = value;
@@ -206,7 +233,7 @@ const InputData = () => {
 				</Button>
 				<Button style={{backgroundColor: "red"}}
 				        className="button"
-				onClick={resetData}><DeleteForeverIcon/>&nbsp;Delete
+				onClick={resetData}><DeleteForeverIcon/>&nbsp;Clear
 				</Button>
 				<Link to="/table">
 					<Button style={{backgroundColor: "lightgray"}}

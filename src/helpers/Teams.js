@@ -112,7 +112,7 @@ export const teams = [
 	// },
 	// {
 	// 	id: "WBA",
-	// 	name: 'West Bromwich',
+	// 	name: 'West Bromvich',
 	// 	icon: logo19
 	// },
 	// {

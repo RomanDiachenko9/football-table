@@ -16,7 +16,8 @@ const Table = () => {
 		let savedData = JSON.parse(localStorage.getItem('tableDataTeam'));
 		setSortedData(savedData)
 		if (savedData) {
-			sortData('points', savedData)
+			sortData('points', savedData);
+			sortData('goalsDifference', savedData)
 		}
 	}, []);
 
