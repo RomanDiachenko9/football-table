@@ -1,7 +1,6 @@
 import '../styles/InputData.css';
 import React, {useEffect, useMemo, useState} from "react";
 import {Button, Input, SelectPicker, Message, Modal, ButtonToolbar} from "rsuite";
-import FormGroup from "rsuite/FormGroup";
 import {teams} from '../helpers/Teams';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -10,15 +9,14 @@ import { Link } from "react-router-dom";
 
 
 const InputData = () => {
+
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
 	const [saveButton, setSaveButton] = useState(false);
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
-	const checkSameTeams = () => {
 
-	}
-
+	console.log('matches', matches)
 
 
 	const submitResults = () => {
@@ -87,7 +85,6 @@ const InputData = () => {
 			for(let i = 0; i < teams.length / 2; i++ ) {
 				newCheck.push({matchId: '', homeTeamId: '', homeScore: '', awayTeamId: '', awayScore: '', games: ''})
 			}
-			const matchesId = matches.map(match => match.homeTeamId + match.awayTeamId);
 			setMatches(newCheck);
 			setSaveButton(false);
 		}
@@ -132,7 +129,7 @@ const InputData = () => {
 	const TeamImage = ({ data }) => {
 		return (
 			<div className="dropdown-item">
-				<img src={ data.img } alt={data.team} style={{ height: 20, width: 20, opacity: data.disabled ? 0.7 : 1 }}/>&nbsp;&nbsp;
+				<img src={ data.img } alt={data.team} style={{ height: 20, width: 20}}/>&nbsp;&nbsp;
 				<span>{ data.team }</span>
 			</div>
 		)
