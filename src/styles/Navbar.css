@@ -70,6 +70,17 @@
     width: 50px;
     margin: 5px;
 }
+
+h5 {
+ text-shadow: 0 -1px #002749,
+    0 2px 0 #012e55,
+    0 4px 0 #013b6c,
+    -2px -2px 15px #134f82,
+    2px -2px 15px #134f82,
+    2px 2px 15px #134f82
+}
+
+
 @media only screen and (max-width: 900px) {
     .navbar .rightSide a {
         width: 70px;

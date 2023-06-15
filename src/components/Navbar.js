@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Logo from '../assets/premier-league-1.svg';
+import Logo from '../assets/logo.svg';
 import "../styles/Navbar.css";
 import {Link} from "react-router-dom";
 import ReorderIcon from '@mui/icons-material/Reorder';
@@ -21,6 +21,7 @@ const Navbar = () => {
 		<div className="navbar">
 			<div className="leftSide" id={openLinks ? "open" : "close"}>
 				<img alt="logo" src={Logo}/>
+				<h5>Premier League</h5>
 				<div className="hiddenLinks">
 					<Link title="Input" to="/input"><InputIcon/></Link>
 					<Link title="Table" to="/table"><TableChartIcon/></Link>

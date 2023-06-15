@@ -6,6 +6,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import { Link } from "react-router-dom";
+import RemindIcon from '@rsuite/icons/legacy/Remind';
 
 
 const InputData = () => {
@@ -13,10 +14,11 @@ const InputData = () => {
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
 	const [saveButton, setSaveButton] = useState(false);
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
-
-	console.log('matches', matches)
 
 
 	const submitResults = () => {
@@ -123,6 +125,7 @@ const InputData = () => {
 	const resetData = () => {
 		localStorage.clear();
 		refill();
+		handleClose()
 	}
 
 
@@ -225,13 +228,27 @@ const InputData = () => {
 					onClick={submitResults}
 					disabled={saveButton}
 					style={{backgroundColor: "green"}}
-				>
-					<CheckIcon/>&nbsp;Submit
+				><CheckIcon/>&nbsp;Submit
 				</Button>
-				<Button style={{backgroundColor: "red"}}
-				        className="button"
-				onClick={resetData}><DeleteForeverIcon/>&nbsp;Clear
+				<Button
+					style={{backgroundColor: "red"}}
+					className="button"
+					onClick={handleOpen}><DeleteForeverIcon/>&nbsp;Clear
 				</Button>
+				<Modal backdrop="static" role="alertdialog" open={open} onClose={handleClose} size="xs">
+					<Modal.Body>
+						<RemindIcon style={{ color: '#ffb300', fontSize: 24 }} />
+						&nbsp;Are you sure?
+					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={resetData} appearance="primary">
+							Ok
+						</Button>
+						<Button onClick={handleClose} appearance="subtle">
+							Cancel
+						</Button>
+					</Modal.Footer>
+				</Modal>
 				<Link to="/table">
 					<Button style={{backgroundColor: "lightgray"}}
 				            className="button"><TableChartIcon/>&nbsp;Table

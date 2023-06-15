@@ -64,8 +64,6 @@ const Table = () => {
 							className="th"
 							onClick={() => sortData('games', sortedData)}>
 							Games
-							{/*{sortBy.field === 'games' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :*/}
-							{/*	<ArrowUp size="sm"/>)}*/}
 						</div>
 						<div
 							className="th"
@@ -102,7 +100,7 @@ const Table = () => {
 								<div
 									key={index}
 									className="table-style">
-									<div className="table-column place-col"><img style={{width: 20, height: 20}} src={el.icon}/></div>
+									<div className="table-column place-col"><img title={el.name} style={{width: 20, height: 20}} src={el.icon}/></div>
 									<div className="table-column">{el.name}</div>
 									<div className="table-column">{el.games ?? 0}</div>
 									<div className="table-column">{el.goalsScored ?? 0}</div>

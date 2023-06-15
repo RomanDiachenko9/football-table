@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {teams} from "../helpers/Teams";
-import '../styles/Results.css'
+import '../styles/Results.css';
 
 
 const Results = () => {
