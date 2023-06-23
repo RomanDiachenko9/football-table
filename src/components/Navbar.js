@@ -24,6 +24,13 @@ const Navbar = () => {
 		console.log('search:', searchTerm)
 	}
 
+	const handleChange = (e) => {
+		if(e.key === 'enter'){
+			console.log('value:', value)
+		}
+	}
+
+
 
 
 	return (
@@ -43,7 +50,7 @@ const Navbar = () => {
 				<Link title="Results" to="/results">Results</Link>
 				<div className="searchGroup">
 					<InputGroup style={{width: 120, height: 30}}>
-						<Input type="text" placeholder="Search..." value={value} onChange={setValue}/>
+						<Input type="text" placeholder="Search..." value={value} onChange={setValue} onKeyPress={handleChange}/>
 					</InputGroup>
 						<SearchIcon style={{width: 40}} onClick={() => {onSearch(value)}}/>
 				</div>
