@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import Table from "./pages/Table"
 import Input from "./pages/InputData";
 import Results from "./pages/Results";
-import Navbar from "../src/components/Navbar";
+import Navbar from "./components/Navbar";
 import Footer from "../src/components/Footer";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 

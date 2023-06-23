@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import Logo from '../assets/logo.svg';
-import "../styles/Navbar.css";
 import {Link} from "react-router-dom";
+import { Button, Input, InputGroup } from 'rsuite';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import InputIcon from '@mui/icons-material/Input';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import SearchIcon from '@rsuite/icons/Search';
-import { Button, Input, InputGroup } from 'rsuite';
+import Logo from '../assets/img/logo.svg';
+import "../styles/Navbar.css";
 
 
 const Navbar = () => {
@@ -17,9 +17,9 @@ const Navbar = () => {
 	}
 
 	const [value, setValue] = useState('');
-	const onChange = (event) => {
-		setValue(event.target.value)
-	}
+	// const onChange = (event) => {
+	// 	setValue(event.target.value)
+	// }
 	const onSearch = (searchTerm) => {
 		console.log('search:', searchTerm)
 	}

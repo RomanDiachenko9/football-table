@@ -1,12 +1,12 @@
 import React, {useEffect, useMemo, useState} from "react";
-import '../styles/InputData.css';
+import { Link } from "react-router-dom";
+import {teams} from '../helpers/teams';
 import {Button, SelectPicker, Message, Modal, useToaster} from "rsuite";
-import {teams} from '../helpers/Teams';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import RemindIcon from '@rsuite/icons/legacy/Remind';
-import { Link } from "react-router-dom";
+import '../styles/InputData.css';
 
 
 const InputData = () => {

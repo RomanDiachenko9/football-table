@@ -1,7 +1,7 @@
-import '../styles/Table.css'
 import React, {useState, useEffect, useMemo} from "react";
 import ArrowDown from '@rsuite/icons/ArrowDown';
 import ArrowUp from '@rsuite/icons/ArrowUp';
+import '../styles/Table.css'
 
 
 const Table = () => {
@@ -48,6 +48,11 @@ const Table = () => {
 			<div className="table">
 				<div className="table-container">
 					<div className="table-style">
+						<div
+							className="th place-col"
+							onClick={() => sortData('place', sortedData)}>#
+
+						</div>
 						<div
 							className="th place-col"
 							onClick={() => sortData('label', sortedData)}>
@@ -100,6 +105,7 @@ const Table = () => {
 								<div
 									key={index}
 									className="table-style">
+									<div className="table-column place-col">{el.indexOf}</div>
 									<div className="table-column place-col"><img title={el.name} style={{width: 20, height: 20}} src={el.icon}/></div>
 									<div className="table-column">{el.name}</div>
 									<div className="table-column">{el.games ?? 0}</div>

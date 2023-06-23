@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {teams} from "../helpers/Teams";
+import {teams} from "../helpers/teams";
 import '../styles/Results.css';
 
 
@@ -16,7 +16,6 @@ const Results = () => {
 				const preparedData = new Map(
 					parsedData.flatMap(day => day.matches.map(match => ([`${match.homeTeamId}-${match.awayTeamId}`, match])))
 				);
-				// console.log(preparedData)
 				setScheduleData(preparedData);
 			} catch (e) {
 				console.log('parse error', e);
