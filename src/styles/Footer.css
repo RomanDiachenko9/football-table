@@ -4,7 +4,7 @@
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 100px;
+    height: 91px;
     background: linear-gradient(90deg, rgba(2,0,34,1) 0%, rgba(43,43,43,1) 50%, rgba(48,54,55,1) 100%);
     display: flex;
     justify-content: center;
@@ -13,15 +13,16 @@
 }
 
 .socialMedia svg {
-    padding-top: 10px;
     color: white;
     margin: 10px;
-    font-size: 40px;
+    font-size: 30px;
     cursor: pointer;
 }
 
 .footer p {
     color: white;
+    /*padding-bottom: 30px;*/
+    font-family: "Apple SD Gothic Neo";
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
 import Table from "./pages/Table"
-import InputData from "./pages/InputData";
+import Input from "./pages/InputData";
 import Results from "./pages/Results";
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
@@ -14,8 +14,8 @@ function App() {
 			<Router>
 				<Navbar/>
 				<Routes>
-					<Route path="/" exact element={<InputData/>}/>
-					<Route path="/input" exact element={<InputData/>} />
+					<Route path="/" exact element={<Input/>}/>
+					<Route path="/input" exact element={<Input/>} />
 					<Route path="/table" exact element={<Table/>} />
 					<Route path="/results" exact element={<Results/>} />
 				</Routes>

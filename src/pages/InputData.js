@@ -1,12 +1,12 @@
-import '../styles/InputData.css';
 import React, {useEffect, useMemo, useState} from "react";
-import {Button, Input, SelectPicker, Message, Modal, ButtonToolbar} from "rsuite";
+import '../styles/InputData.css';
+import {Button, SelectPicker, Message, Modal, useToaster} from "rsuite";
 import {teams} from '../helpers/Teams';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
-import { Link } from "react-router-dom";
 import RemindIcon from '@rsuite/icons/legacy/Remind';
+import { Link } from "react-router-dom";
 
 
 const InputData = () => {
@@ -17,6 +17,7 @@ const InputData = () => {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const toaster = useToaster();
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
 
@@ -62,7 +63,7 @@ const InputData = () => {
 		})
 		localStorage.setItem('tableDataTeam', JSON.stringify(team));
 		setSaveButton(true);
-	}
+	}; // Set items from input data to locale storage
 
 
 	const refill = () => {
@@ -107,7 +108,7 @@ const InputData = () => {
 			points = 1;
 		}
 		return points;
-	}
+	} // Function to calculate points in table
 
 
 	const daysData = useMemo(() => {
@@ -119,29 +120,32 @@ const InputData = () => {
 			});
 		}
 		return days;
-	}, []);
+	}, []);  // Calculate quantity of match days depends on quantity of teams
 
 
 	const resetData = () => {
 		localStorage.clear();
 		refill();
-		handleClose()
-	}
+		handleClose();
+		toaster.push(
+			<Message showIcon type="success" header="Success" duration="2000">
+				Data is deleted successfully.
+			</Message>, {placement: 'topCenter'});
+	} // Reset data on delete button
 
 
-	const TeamImage = ({ data }) => {
-		return (
-			<div className="dropdown-item">
-				<img src={ data.img } alt={data.team} style={{ height: 20, width: 20}}/>&nbsp;&nbsp;
-				<span>{ data.team }</span>
-			</div>
-		)
-	}
 	const showItem = (img, team) => {
 		const data = {img, team}
-
+		const TeamImage = ({ data }) => {
+			return (
+				<div className="dropdown-item">
+					<img src={ data.img } alt={data.name} style={{ height: 20, width: 20}}/>&nbsp;&nbsp;
+					<span>{ data.team }</span>
+				</div>
+			)
+		}
 		return <TeamImage data={data}/>
-	}
+	}  // Show image with item team
 
 
 
@@ -150,12 +154,11 @@ const InputData = () => {
 
 			<div className="input-results">
 				<div className="match-day">
-					<h2>MatchDay #</h2>
+					<h2>Match Day #</h2>
 					<SelectPicker
 						data={daysData}
 						value={selectedMatchDay}
 						onChange={setSelectedMatchDay}
-						cleanable={false}
 						searchable={true}
 						className="match-day-picker"
 					/>
@@ -167,8 +170,10 @@ const InputData = () => {
 							<SelectPicker
 								className='choose-team'
 								data={selectPickerData}
+								// disabledItemValues={disabledslectValues}
 								value={match.homeTeamId}
 								disabled={saveButton}
+								placeholder="Select home team"
 								searchable={true}
 								renderMenuItem={(label, item) => {
 									return showItem(item['img'], item.label)
@@ -206,6 +211,7 @@ const InputData = () => {
 							<SelectPicker
 								className='choose-team'
 								data={selectPickerData}
+								placeholder="Select away team"
 								value={match.awayTeamId}
 								disabled={saveButton}
 								searchable={true}
@@ -238,7 +244,7 @@ const InputData = () => {
 				<Modal backdrop="static" role="alertdialog" open={open} onClose={handleClose} size="xs">
 					<Modal.Body>
 						<RemindIcon style={{ color: '#ffb300', fontSize: 24 }} />
-						&nbsp;Are you sure?
+						&nbsp;Are you sure you want to delete the results?
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={resetData} appearance="primary">

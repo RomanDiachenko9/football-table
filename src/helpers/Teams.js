@@ -40,16 +40,16 @@ export const teams = [
 		name: 'Brentford',
 		icon: logo4
 	},
-	{
-		id: "BHA",
-		name: 'Brighton',
-		icon: logo5
-	},
-	{
-		id: "BUR",
-		name: 'Burnley',
-		icon: logo6
-	},
+	// {
+	// 	id: "BHA",
+	// 	name: 'Brighton',
+	// 	icon: logo5
+	// },
+	// {
+	// 	id: "BUR",
+	// 	name: 'Burnley',
+	// 	icon: logo6
+	// },
 	// {
 	// 	id: "CHE",
 	// 	name: 'Chelsea',
@@ -119,5 +119,5 @@ export const teams = [
 	// 	id: "WOL",
 	// 	name: 'Wolverhampton',
 	// 	icon: logo20
-	// },
+	// }
 ]

@@ -1,7 +1,4 @@
 .input-table {
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
     color: black;
     width: 100%;
     padding-top: 50px;
@@ -22,6 +19,7 @@
     min-width: 50px;
     border-radius: 10px;
     background: #9cc2e4;
+    font-family: "Apple SD Gothic Neo";
 }
 
 
@@ -31,8 +29,8 @@
     background: #C5CDF9;
     border-radius: 10px;
     height: 40px;
-    max-width: 160px;
-    min-width: 160px;
+    max-width: 180px;
+    min-width: 180px;
     font-family: "Trebuchet MS";
     font-size: 15px;
     text-align: center;
@@ -94,10 +92,6 @@
     width: 50px;
 }
 
-.logo {
-    width: 100px;
-    height: 100px;
-}
 
 .match {
     display: flex;

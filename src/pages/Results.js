@@ -92,9 +92,9 @@ const Results = () => {
 					}
 				</table>
 				<div className="schedule-description">
-					<div className="description"><div className="team-item team-win"> </div><h6>Home win</h6></div>
-					<div className="description"><div className="team-item team-lose"> </div><h6>Home defeat</h6></div>
-					<div className="description"><div className="team-item team-draw"> </div><h6>Draw</h6></div>
+					<div className="description"><div className="team-item team-win"> </div><p>Home win</p></div>
+					<div className="description"><div className="team-item team-lose"> </div><p>Home defeat</p></div>
+					<div className="description"><div className="team-item team-draw"> </div><p>Draw</p></div>
 				</div>
 			</div>
 

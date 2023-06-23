@@ -40,7 +40,7 @@ const Table = () => {
 			setSortedData(sortedArr);
 			return sortedArr;
 		}
-	}
+	}; // Function to sort data in table header
 
 
 	return (

@@ -16,6 +16,15 @@ const Navbar = () => {
 		setOpenLinks(!openLinks)
 	}
 
+	const [value, setValue] = useState('');
+	const onChange = (event) => {
+		setValue(event.target.value)
+	}
+	const onSearch = (searchTerm) => {
+		console.log('search:', searchTerm)
+	}
+
+
 
 	return (
 		<div className="navbar">
@@ -32,11 +41,12 @@ const Navbar = () => {
 				<Link title="Input" to="/input">Input</Link>
 				<Link title="Table" to="/table">Table</Link>
 				<Link title="Results" to="/results">Results</Link>
-				<InputGroup style={{width: 120, height: 30}}>
-					<Input type="text" placeholder="Search..." />
-				</InputGroup>
-				<SearchIcon style={{width: 40}} onClick={()=> {console.log("yeah")}}/>
-
+				<div className="searchGroup">
+					<InputGroup style={{width: 120, height: 30}}>
+						<Input type="text" placeholder="Search..." value={value} onChange={setValue}/>
+					</InputGroup>
+						<SearchIcon style={{width: 40}} onClick={() => {onSearch(value)}}/>
+				</div>
 				<button onClick={toggleNavbar}>
 					<ReorderIcon/>
 				</button>

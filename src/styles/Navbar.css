@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: row;
     position: fixed;
+    font-family: "Apple SD Gothic Neo";
 }
 
 .navbar .leftSide {
@@ -12,7 +13,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding-left: 100px;
+    padding-left: 50px;
 }
 
 .navbar .leftSide img {
@@ -44,6 +45,12 @@
 
 .navbar .rightSide svg {
     font-size: 20px;
+}
+
+.navbar .rightSide .searchGroup {
+    padding-left: 20px;
+    display: flex;
+    width: 150px;
 }
 
 .navbar #open {
@@ -81,12 +88,17 @@ h5 {
 }
 
 
+
+
 @media only screen and (max-width: 900px) {
     .navbar .rightSide a {
         width: 70px;
     }
     .navbar .leftSide {
         padding-left: 50px;
+    }
+    .navbar .rightSide .searchGroup {
+        display: none;
     }
 }
 
@@ -103,6 +115,9 @@ h5 {
     .navbar .rightSide button {
         display: inherit;
     }
+    .navbar .rightSide .searchGroup {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 600px) {
@@ -113,4 +128,7 @@ h5 {
     .hiddenLinks {
         display: none;
     }
+    /*.navbar .rightSide .searchGroup {*/
+    /*    display: none;*/
+    /*}*/
 }
