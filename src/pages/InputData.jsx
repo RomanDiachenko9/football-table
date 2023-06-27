@@ -123,7 +123,7 @@ const InputData = () => {
 	}, []);  // Calculate quantity of match days depends on quantity of teams
 
 
-	const resetData = () => {
+	const deleteData = () => {
 		localStorage.clear();
 		refill();
 		handleClose();
@@ -146,6 +146,9 @@ const InputData = () => {
 		}
 		return <TeamImage data={data}/>
 	}  // Show image with item team
+
+
+
 
 
 
@@ -239,7 +242,7 @@ const InputData = () => {
 				<Button
 					style={{backgroundColor: "red"}}
 					className="button"
-					onClick={handleOpen}><DeleteForeverIcon/>&nbsp;Clear
+					onClick={handleOpen}><DeleteForeverIcon/>&nbsp;Delete
 				</Button>
 				<Modal backdrop="static" role="alertdialog" open={open} onClose={handleClose} size="xs">
 					<Modal.Body>
@@ -247,7 +250,7 @@ const InputData = () => {
 						&nbsp;Are you sure you want to delete the results?
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={resetData} appearance="primary">
+						<Button onClick={deleteData} appearance="primary">
 							Ok
 						</Button>
 						<Button onClick={handleClose} appearance="subtle">

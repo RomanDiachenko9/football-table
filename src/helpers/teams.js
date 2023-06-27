@@ -40,84 +40,84 @@ export const teams = [
 		name: 'Brentford',
 		icon: logo4
 	},
-	// {
-	// 	id: "BHA",
-	// 	name: 'Brighton',
-	// 	icon: logo5
-	// },
-	// {
-	// 	id: "BUR",
-	// 	name: 'Burnley',
-	// 	icon: logo6
-	// },
-	// {
-	// 	id: "CHE",
-	// 	name: 'Chelsea',
-	// 	icon: logo7
-	// },
-	// {
-	// 	id: "CRY",
-	// 	name: 'Crystal Palace',
-	// 	icon: logo8
-	// },
-	// {
-	// 	id: "EVE",
-	// 	name: 'Everton',
-	// 	icon: logo9
-	// },
-	// {
-	// 	id: "FUL",
-	// 	name: 'Fulham',
-	// 	icon: logo10
-	// },
-	// {
-	// 	id: "LIV",
-	// 	name: 'Liverpool',
-	// 	icon: logo11
-	// },
-	// {
-	// 	id: "LUT",
-	// 	name: 'Luton',
-	// 	icon: logo12
-	// },
-	// {
-	// 	id: "MCI",
-	// 	name: 'Manchester City',
-	// 	icon: logo13
-	// },
-	// {
-	// 	id: "MUN",
-	// 	name: 'Manchester United',
-	// 	icon: logo14
-	// },
-	// {
-	// 	id: "NEW",
-	// 	name: 'Newcastle',
-	// 	icon: logo15
-	// },
-	// {
-	// 	id: "NFO",
-	// 	name: 'Nottingham Forest',
-	// 	icon: logo16
-	// },
-	// {
-	// 	id: "SHU",
-	// 	name: 'Sheffield United',
-	// 	icon: logo17
-	// },
-	// {
-	// 	id: "TOT",
-	// 	name: 'Tottenham',
-	// 	icon: logo18
-	// },
-	// {
-	// 	id: "WHU",
-	// 	name: 'West Ham United',
-	// 	icon: logo19
-	// },
-	// {
-	// 	id: "WOL",
-	// 	name: 'Wolverhampton',
-	// 	icon: logo20
-	// }
+	{
+		id: "BHA",
+		name: 'Brighton',
+		icon: logo5
+	},
+	{
+		id: "BUR",
+		name: 'Burnley',
+		icon: logo6
+	},
+	{
+		id: "CHE",
+		name: 'Chelsea',
+		icon: logo7
+	},
+	{
+		id: "CRY",
+		name: 'Crystal Palace',
+		icon: logo8
+	},
+	{
+		id: "EVE",
+		name: 'Everton',
+		icon: logo9
+	},
+	{
+		id: "FUL",
+		name: 'Fulham',
+		icon: logo10
+	},
+	{
+		id: "LIV",
+		name: 'Liverpool',
+		icon: logo11
+	},
+	{
+		id: "LUT",
+		name: 'Luton',
+		icon: logo12
+	},
+	{
+		id: "MCI",
+		name: 'Manchester City',
+		icon: logo13
+	},
+	{
+		id: "MUN",
+		name: 'Manchester Utd',
+		icon: logo14
+	},
+	{
+		id: "NEW",
+		name: 'Newcastle',
+		icon: logo15
+	},
+	{
+		id: "NFO",
+		name: 'Nottingham',
+		icon: logo16
+	},
+	{
+		id: "SHU",
+		name: 'Sheffield United',
+		icon: logo17
+	},
+	{
+		id: "TOT",
+		name: 'Tottenham',
+		icon: logo18
+	},
+	{
+		id: "WHU",
+		name: 'West Ham United',
+		icon: logo19
+	},
+	{
+		id: "WOL",
+		name: 'Wolverhampton',
+		icon: logo20
+	}
 ]

@@ -6,6 +6,7 @@
     flex-direction: row;
     position: fixed;
     font-family: "Apple SD Gothic Neo";
+    z-index: 10;
 }
 
 .navbar .leftSide {
@@ -79,7 +80,8 @@
 }
 
 h5 {
- text-shadow: 0 -1px #002749,
+    cursor: pointer;
+    text-shadow: 0 -1px #002749,
     0 2px 0 #012e55,
     0 4px 0 #013b6c,
     -2px -2px 15px #134f82,

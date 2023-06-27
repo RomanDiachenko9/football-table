@@ -1,14 +1,38 @@
+.App {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
-    background: -webkit-linear-gradient(90deg, #49a09d, #5f2c82);
+    padding: 0;
+    margin: 0;
     background: linear-gradient(90deg, rgba(175,191,203,1) 0%, rgba(51,130,193,1) 50%);
     font-family: sans-serif;
     font-weight: 100;
 }
 
 .table {
-    padding: 120px 0 0 0;
+    margin: 120px 0 60px 0;
     display: flex;
     justify-content: center;
+    height: 100%;
+    opacity: 0;
+    animation: ani 2.5s forwards;
+}
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.table-container {
+    border: 3px solid black;
+    border-radius: 10px;
+    max-width: 100%;
+    min-width: 300px;
+    /*height: 100%;*/
 }
 
 .table-style {
@@ -49,6 +73,7 @@ body {
     font-family: "Apple SD Gothic Neo";
 }
 
+
 .place-col {
     max-width: 40px;
     min-width: 40px;
@@ -59,18 +84,17 @@ body {
     border: 1px solid black;
 }
 
-.table-container {
-    border: 3px solid black;
-    border-radius: 10px;
-}
 
 .team-item {
     width: 30px;
     height: 25px;
+    max-width: 100%;
+    min-width: 30px;
 }
 
 .team-item-title {
     width: 30px;
     height: 25px;
 }
+
 

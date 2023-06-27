@@ -17,7 +17,7 @@ const Table = () => {
 		setSortedData(savedData)
 		if (savedData) {
 			sortData('points', savedData);
-			sortData('goalsDifference', savedData)
+			sortData('goalsDifference', savedData);
 		}
 	}, []);
 
@@ -42,21 +42,24 @@ const Table = () => {
 		}
 	}; // Function to sort data in table header
 
+	// console.log('sortedData', sortedData)
+
+
+
+
 
 	return (
-		<div>
+		// <div className="container">
 			<div className="table">
 				<div className="table-container">
 					<div className="table-style">
 						<div
 							className="th place-col"
 							onClick={() => sortData('place', sortedData)}>#
-
 						</div>
 						<div
 							className="th place-col"
 							onClick={() => sortData('label', sortedData)}>
-
 						</div>
 						<div
 							className="th"
@@ -73,21 +76,17 @@ const Table = () => {
 						<div
 							className="th"
 							onClick={() => sortData('goalsScored', sortedData)}>
-							GA
-							{sortBy.field === 'goalsScored' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
-								<ArrowUp size="sm"/>)}
+							Goals scored
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('goalsConceded', sortedData)}>
-							GF
-							{sortBy.field === 'goalsConceded' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
-								<ArrowUp size="sm"/>)}
+							Goals conceded
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('goalsDifference', sortedData)}>
-							GD
+							Goals difference
 							{sortBy.field === 'goalsConceded' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
 								<ArrowUp size="sm"/>)}
 						</div>
@@ -105,9 +104,11 @@ const Table = () => {
 								<div
 									key={index}
 									className="table-style">
-									<div className="table-column place-col">{el.indexOf}</div>
-									<div className="table-column place-col"><img title={el.name} style={{width: 20, height: 20}} src={el.icon}/></div>
-									<div className="table-column">{el.name}</div>
+									<div className="table-column place-col">{index + 1}</div>
+									<div className="table-column place-col">
+										<img title={el.name} style={{width: 20, height: 20}} src={el.icon}/>
+									</div>
+									<div className="table-column name">{el.name}</div>
 									<div className="table-column">{el.games ?? 0}</div>
 									<div className="table-column">{el.goalsScored ?? 0}</div>
 									<div className="table-column">{el.goalsConceded ?? 0}</div>
@@ -119,7 +120,7 @@ const Table = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		// </div>
 	)
 }
 

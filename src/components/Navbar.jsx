@@ -51,8 +51,9 @@ const Navbar = () => {
 				<div className="searchGroup">
 					<InputGroup style={{width: 120, height: 30}}>
 						<Input type="text" placeholder="Search..." value={value} onChange={setValue} onKeyPress={handleChange}/>
-					</InputGroup>
 						<SearchIcon style={{width: 40}} onClick={() => {onSearch(value)}}/>
+					</InputGroup>
+
 				</div>
 				<button onClick={toggleNavbar}>
 					<ReorderIcon/>
