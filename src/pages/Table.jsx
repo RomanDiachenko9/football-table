@@ -42,14 +42,9 @@ const Table = () => {
 		}
 	}; // Function to sort data in table header
 
-	// console.log('sortedData', sortedData)
-
-
-
 
 
 	return (
-		// <div className="container">
 			<div className="table">
 				<div className="table-container">
 					<div className="table-style">
@@ -76,17 +71,17 @@ const Table = () => {
 						<div
 							className="th"
 							onClick={() => sortData('goalsScored', sortedData)}>
-							Goals scored
+							GS
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('goalsConceded', sortedData)}>
-							Goals conceded
+							GC
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('goalsDifference', sortedData)}>
-							Goals difference
+							GD
 							{sortBy.field === 'goalsConceded' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
 								<ArrowUp size="sm"/>)}
 						</div>
@@ -120,7 +115,6 @@ const Table = () => {
 					</div>
 				</div>
 			</div>
-		// </div>
 	)
 }
 

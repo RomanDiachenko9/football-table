@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import { Link } from "react-router-dom";
 import {teams} from '../helpers/teams';
-import {Button, SelectPicker, Message, Modal, useToaster} from "rsuite";
+import {Button, SelectPicker, Message, Modal, useToaster, Input} from "rsuite";
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
@@ -13,13 +13,31 @@ const InputData = () => {
 
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
+
+	const [selectedOptions, setSelectedOptions] = useState([]);
+
 	const [saveButton, setSaveButton] = useState(false);
 	const [open, setOpen] = useState(false);
+	const toaster = useToaster();
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	const toaster = useToaster();
+
+
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
+	console.log(selectPickerData)
+
+
+	const handleOptionChange = (value, index) => {
+		if (selectedOptions.includes(value)) {
+			const newOptions = selectedOptions.filter(opt => opt !== value)
+			setSelectedOptions(newOptions);
+		} else {
+			setSelectedOptions(prev => ([...prev, value]));
+		}
+	};
+
+	console.log('selectedOptions', selectedOptions);
 
 
 	const submitResults = () => {
@@ -69,6 +87,7 @@ const InputData = () => {
 	const refill = () => {
 		const daysData = JSON.parse(localStorage.getItem('tableDataTeam'));
 		const matchesData = JSON.parse(localStorage.getItem('matchDays'));
+
 
 		if (daysData) {
 			const matchDayData = matchesData.find(day => day.selectedMatchDay === selectedMatchDay);
@@ -151,7 +170,6 @@ const InputData = () => {
 
 
 
-
 	return (
 		<div className="input-table">
 
@@ -167,15 +185,16 @@ const InputData = () => {
 					/>
 				</div>
 				{
-					matches.map((match, i) => (
+					matches.map((match, index) => (
 						<div className='select'
-						     key={i}>
+						     key={index}>
 							<SelectPicker
 								className='choose-team'
 								data={selectPickerData}
-								// disabledItemValues={disabledslectValues}
+								// value={selectedOptions[match.homeTeamId]}
 								value={match.homeTeamId}
 								disabled={saveButton}
+								disabledItemValues={selectedOptions}
 								placeholder="Select home team"
 								searchable={true}
 								renderMenuItem={(label, item) => {
@@ -183,8 +202,9 @@ const InputData = () => {
 								}}
 								onChange={value => {
 									const newArray = [...matches];
-									newArray[i].homeTeamId = value;
-									setMatches(newArray)
+									newArray[index].homeTeamId = value;
+									handleOptionChange(value, index);
+									setMatches(newArray);
 								}}
 							/>
 							<input
@@ -195,8 +215,8 @@ const InputData = () => {
 								disabled={saveButton}
 								onChange={(e) => {
 									const newArray = [...matches];
-									newArray[i].homeScore = Number(e.target.value);
-									setMatches(newArray)
+									newArray[index].homeScore = Number(e.target.value);
+									setMatches(newArray);
 								}}
 							/>:
 							<input
@@ -207,8 +227,8 @@ const InputData = () => {
 								disabled={saveButton}
 								onChange={(e) => {
 									const newArray = [...matches];
-									newArray[i].awayScore = Number(e.target.value);
-									setMatches(newArray)
+									newArray[index].awayScore = Number(e.target.value);
+									setMatches(newArray);
 								}}
 							/>
 							<SelectPicker
@@ -216,21 +236,25 @@ const InputData = () => {
 								data={selectPickerData}
 								placeholder="Select away team"
 								value={match.awayTeamId}
+								// value={selectedOptions[match.awayTeamId]}
 								disabled={saveButton}
+								disabledItemValues={selectedOptions}
 								searchable={true}
 								renderMenuItem={(label, item) => {
 									return showItem(item['img'], item.label)
 								}}
 								onChange={value => {
 									const newArray = [...matches];
-									newArray[i].awayTeamId = value;
-									setMatches(newArray)
+									newArray[index].awayTeamId = value;
+									handleOptionChange(value, index);
+									setMatches(newArray);
 								}}
 							/>
 						</div>
 					))
 				}
 			</div>
+
 			<div className="outButton">
 				<Button
 					className="button"
