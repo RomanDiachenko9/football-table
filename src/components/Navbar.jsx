@@ -5,6 +5,7 @@ import ReorderIcon from '@mui/icons-material/Reorder';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import InputIcon from '@mui/icons-material/Input';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import LoginIcon from '@mui/icons-material/Login';
 import SearchIcon from '@rsuite/icons/Search';
 import Logo from '../assets/img/logo.svg';
 import "../styles/Navbar.css";
@@ -40,6 +41,7 @@ const Navbar = () => {
 					<Link title="Input" to="/input"><InputIcon/></Link>
 					<Link title="Table" to="/table"><TableChartIcon/></Link>
 					<Link title="Results" to="/results"><ScheduleIcon/></Link>
+					<Link title="Login" to="/login"><LoginIcon/></Link>
 				</div>
 			</div>
 			<div className="rightSide">
@@ -51,8 +53,8 @@ const Navbar = () => {
 						<Input type="text" placeholder="Search..." value={value} onChange={setValue} onKeyPress={handleChange}/>
 						<SearchIcon style={{width: 40}} onClick={() => {onSearch(value)}}/>
 					</InputGroup>
-
 				</div>
+				<Link title="Login" to="/login"><LoginIcon/></Link>
 				<button onClick={toggleNavbar}>
 					<ReorderIcon/>
 				</button>

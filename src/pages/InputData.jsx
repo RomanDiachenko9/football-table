@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import { Link } from "react-router-dom";
 import {teams} from '../helpers/teams';
-import {Button, SelectPicker, Message, Modal, useToaster, Input} from "rsuite";
+import {Button, SelectPicker, Message, Modal, useToaster, InputNumber} from "rsuite";
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
@@ -13,9 +13,7 @@ const InputData = () => {
 
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
-
 	const [selectedOptions, setSelectedOptions] = useState([]);
-
 	const [saveButton, setSaveButton] = useState(false);
 	const [open, setOpen] = useState(false);
 	const toaster = useToaster();
@@ -25,10 +23,9 @@ const InputData = () => {
 
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
-	console.log(selectPickerData)
 
 
-	const handleOptionChange = (value, index) => {
+	const handleOptionChange = (value) => {
 		if (selectedOptions.includes(value)) {
 			const newOptions = selectedOptions.filter(opt => opt !== value)
 			setSelectedOptions(newOptions);
@@ -36,8 +33,6 @@ const InputData = () => {
 			setSelectedOptions(prev => ([...prev, value]));
 		}
 	};
-
-	console.log('selectedOptions', selectedOptions);
 
 
 	const submitResults = () => {
@@ -167,12 +162,15 @@ const InputData = () => {
 	}  // Show image with item team
 
 
+	const onChangeInput = (value, event) => {
+
+	}
+
 
 
 
 	return (
 		<div className="input-table">
-
 			<div className="input-results">
 				<div className="match-day">
 					<h2>Match Day #</h2>
@@ -191,62 +189,59 @@ const InputData = () => {
 							<SelectPicker
 								className='choose-team'
 								data={selectPickerData}
-								// value={selectedOptions[match.homeTeamId]}
 								value={match.homeTeamId}
 								disabled={saveButton}
 								disabledItemValues={selectedOptions}
 								placeholder="Select home team"
-								searchable={true}
-								renderMenuItem={(label, item) => {
-									return showItem(item['img'], item.label)
-								}}
+								placement={"auto"}
+								searchable
+								renderMenuItem={(label, item) => {return showItem(item['img'], item.label)}}
 								onChange={value => {
 									const newArray = [...matches];
+									handleOptionChange(newArray[index].homeTeamId || value);
 									newArray[index].homeTeamId = value;
-									handleOptionChange(value, index);
 									setMatches(newArray);
 								}}
 							/>
-							<input
+							<InputNumber
 								className="input-score"
-								type="number"
-								min="0"
+								defaultValue={0}
+								// placeholder={0}
+								min={0}
 								value={match.homeScore}
 								disabled={saveButton}
-								onChange={(e) => {
+								onChange={(value) => {
 									const newArray = [...matches];
-									newArray[index].homeScore = Number(e.target.value);
+									newArray[index].homeScore = !isNaN(Number(value)) ? Number(value) : null;
 									setMatches(newArray);
-								}}
-							/>:
-							<input
+								}}/>-
+							<InputNumber
 								className="input-score"
-								type="number"
-								min="0"
+								defaultValue={0}
+								// placeholder={0}
+								min={0}
 								value={match.awayScore}
 								disabled={saveButton}
-								onChange={(e) => {
+								onChange={(value) => {
 									const newArray = [...matches];
-									newArray[index].awayScore = Number(e.target.value);
+									newArray[index].awayScore = !isNaN(Number(value)) ? Number(value) : null;
 									setMatches(newArray);
 								}}
 							/>
 							<SelectPicker
 								className='choose-team'
 								data={selectPickerData}
-								placeholder="Select away team"
 								value={match.awayTeamId}
-								// value={selectedOptions[match.awayTeamId]}
 								disabled={saveButton}
 								disabledItemValues={selectedOptions}
-								searchable={true}
-								renderMenuItem={(label, item) => {
-									return showItem(item['img'], item.label)
-								}}
+								placeholder="Select away team"
+								searchable
+								placement={"auto"}
+								renderMenuItem={(label, item) => {return showItem(item['img'], item.label)}}
 								onChange={value => {
 									const newArray = [...matches];
+									handleOptionChange(newArray[index].awayTeamId || value);
 									newArray[index].awayTeamId = value;
-									handleOptionChange(value, index);
 									setMatches(newArray);
 								}}
 							/>

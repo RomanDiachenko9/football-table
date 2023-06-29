@@ -1,4 +1,6 @@
 import React, {useState, useEffect, useMemo} from "react";
+import TableData from "../components/TableData";
+import {teams} from "../helpers/teams";
 import ArrowDown from '@rsuite/icons/ArrowDown';
 import ArrowUp from '@rsuite/icons/ArrowUp';
 import '../styles/Table.css'
@@ -42,6 +44,8 @@ const Table = () => {
 		}
 	}; // Function to sort data in table header
 
+	// console.log('sortedData', sortedData);
+
 
 
 	return (
@@ -82,35 +86,19 @@ const Table = () => {
 							className="th"
 							onClick={() => sortData('goalsDifference', sortedData)}>
 							GD
-							{sortBy.field === 'goalsConceded' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
-								<ArrowUp size="sm"/>)}
+							{sortBy.field === 'goalsConceded' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> : <ArrowUp size="sm"/>)}
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('points', sortedData)}>
 							Points
-							{sortBy.field === 'points' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
-								<ArrowUp size="sm"/>)}
+							{sortBy.field === 'points' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> : <ArrowUp size="sm"/>)}
 						</div>
 					</div>
 					<div>
-						{sortedData && sortedData.length &&
-						sortedData.map((el, index) => (
-								<div
-									key={index}
-									className="table-style">
-									<div className="table-column place-col">{index + 1}</div>
-									<div className="table-column place-col">
-										<img title={el.name} style={{width: 20, height: 20}} src={el.icon}/>
-									</div>
-									<div className="table-column name">{el.name}</div>
-									<div className="table-column">{el.games ?? 0}</div>
-									<div className="table-column">{el.goalsScored ?? 0}</div>
-									<div className="table-column">{el.goalsConceded ?? 0}</div>
-									<div className="table-column">{el.goalsDifference ?? 0}</div>
-									<div className="table-column">{el.points ?? 0}</div>
-								</div>
-							))
+						{sortedData && sortedData.length ?
+							sortedData.map((el, index) => (<TableData el={el} index={index}/>)) :
+							teams.map((el, index) => (<TableData el={el} index={index}/>))
 						}
 					</div>
 				</div>

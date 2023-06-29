@@ -90,6 +90,10 @@ h5 {
     2px 2px 15px #134f82
 }
 
+.navbar #open h5 {
+    display: none;
+}
+
 
 
 
