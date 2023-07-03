@@ -14,6 +14,7 @@ const Table = () => {
 		direction: 'up'
 	});
 
+
 	useEffect(() => {
 		let savedData = JSON.parse(localStorage.getItem('tableDataTeam'));
 		setSortedData(savedData)
@@ -42,9 +43,8 @@ const Table = () => {
 			setSortedData(sortedArr);
 			return sortedArr;
 		}
-	}; // Function to sort data in table header
+	}; // Function to sort data in the table
 
-	// console.log('sortedData', sortedData);
 
 
 
@@ -64,8 +64,7 @@ const Table = () => {
 							className="th"
 							onClick={() => sortData('name', sortedData)}>
 							Team
-							{sortBy.field === 'name' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> :
-								<ArrowUp size="sm"/>)}
+							{sortBy.field === 'name' && sortBy.direction === 'down' ?  <ArrowUp size="sm"/> : <ArrowDown size="sm"/>}
 						</div>
 						<div
 							className="th"
@@ -86,13 +85,13 @@ const Table = () => {
 							className="th"
 							onClick={() => sortData('goalsDifference', sortedData)}>
 							GD
-							{sortBy.field === 'goalsConceded' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> : <ArrowUp size="sm"/>)}
+							{sortBy.field === 'goalsDifference' && sortBy.direction === 'down' ?  <ArrowUp size="sm"/> : <ArrowDown size="sm"/>}
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('points', sortedData)}>
 							Points
-							{sortBy.field === 'points' && (sortBy.direction === 'down' ? <ArrowDown size="sm"/> : <ArrowUp size="sm"/>)}
+							{sortBy.field === 'points' && sortBy.direction === 'down' ?  <ArrowUp size="sm"/> : <ArrowDown size="sm"/>}
 						</div>
 					</div>
 					<div>

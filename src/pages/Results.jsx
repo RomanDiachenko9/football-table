@@ -38,7 +38,6 @@ const Results = () => {
 				return `${cellClass} team-draw`;
 			}
 		}
-
 		return cellClass;
 	}
 
@@ -90,6 +89,7 @@ const Results = () => {
 						})
 					}
 				</table>
+				<hr/>
 				<div className="schedule-description">
 					<div className="description"><div className="team-item team-win"> </div><p>Home win</p></div>
 					<div className="description"><div className="team-item team-lose"> </div><p>Home defeat</p></div>

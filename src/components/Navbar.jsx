@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Input, InputGroup } from 'rsuite';
+import SearchIcon from '@rsuite/icons/Search';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import InputIcon from '@mui/icons-material/Input';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import LoginIcon from '@mui/icons-material/Login';
-import SearchIcon from '@rsuite/icons/Search';
 import Logo from '../assets/img/logo.svg';
 import "../styles/Navbar.css";
 

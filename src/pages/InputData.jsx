@@ -1,11 +1,11 @@
 import React, {useEffect, useMemo, useState} from "react";
 import { Link } from "react-router-dom";
 import {teams} from '../helpers/teams';
-import {Button, SelectPicker, Message, Modal, useToaster, InputNumber} from "rsuite";
+import {Button, SelectPicker, Message, Modal, useToaster, InputNumber, DatePicker, Panel, Placeholder} from "rsuite";
+import RemindIcon from '@rsuite/icons/legacy/Remind';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TableChartIcon from '@mui/icons-material/TableChart';
-import RemindIcon from '@rsuite/icons/legacy/Remind';
 import '../styles/InputData.css';
 
 
@@ -14,12 +14,11 @@ const InputData = () => {
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
 	const [selectedOptions, setSelectedOptions] = useState([]);
-	const [saveButton, setSaveButton] = useState(false);
+	const [isDisabled, setIsDisabled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const toaster = useToaster();
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-
 
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
@@ -32,51 +31,83 @@ const InputData = () => {
 		} else {
 			setSelectedOptions(prev => ([...prev, value]));
 		}
-	};
+	}; // Function for select unique team in select options
+
+
+	const emptyFieldsValidations = () => {
+		const array = [];
+		matches.forEach(match => {
+			for (const [value] of Object.entries(match)) {
+				array.push(typeof value === "string" ? !!value : true)
+			}
+		})
+		return array.every(e => e === true);
+	}
+
 
 
 	const submitResults = () => {
-		const matchesData = JSON.parse(localStorage.getItem('matchDays'));
-		const matchDayData = { selectedMatchDay, matches: matches };
-		let dayData = [];
-		if (!matchesData) {
-			dayData = [matchDayData]
-			localStorage.setItem('matchDays', JSON.stringify(dayData));
-		} else {
-			dayData = [...matchesData, matchDayData]
-			localStorage.setItem('matchDays', JSON.stringify(dayData));
-		}
-		let team = [...teams]
-		dayData.forEach(matchDayData => {
-			matchDayData.matches.forEach(match => {
+		if(emptyFieldsValidations()) {
+			const matchesData = JSON.parse(localStorage.getItem('matchDays'));
+			const matchDayData = { selectedMatchDay, matches: matches};
+			let dayData;
+			if (!matchesData) {
+				dayData = [matchDayData]
+				localStorage.setItem('matchDays', JSON.stringify(dayData));
+			} else {
+				dayData = [...matchesData, matchDayData]
+				localStorage.setItem('matchDays', JSON.stringify(dayData));
+			}
+			let team = [...teams]
+			dayData.forEach(matchDayData => {
+				matchDayData.matches.forEach(match => {
 
-				const elseTeam = team.filter(e => e.id !== match.homeTeamId && e.id !== match.awayTeamId);
-				const home = team.find(e => e.id === match.homeTeamId);
-				const away = team.find(e => e.id === match.awayTeamId);
-				team = [
-					...elseTeam,
-					{
-						...home,
-						games: home.games ? home.games + 1  : 1,
-						goalsScored: home.goalsScored ? home.goalsScored + match.homeScore : match.homeScore,
-						goalsConceded: home.goalsConceded ? home.goalsConceded + match.awayScore : match.awayScore,
-						goalsDifference: home.goalsDifference ? home.goalsDifference + (match.homeScore - match.awayScore) : (match.homeScore - match.awayScore),
-						points: home.points ? home.points + calculateTable(match.homeScore, match.awayScore) : calculateTable(match.homeScore, match.awayScore)
-					},
-					{
-						...away,
-						games: away.games ? away.games + 1  : 1,
-						goalsScored: away.goalsScored ? away.goalsScored + match.awayScore : match.awayScore,
-						goalsConceded: away.goalsConceded ? away.goalsConceded + match.homeScore : match.homeScore,
-						goalsDifference: away.goalsDifference ? away.goalsDifference + (match.awayScore - match.homeScore) : (match.awayScore - match.homeScore),
-						points: away.points ? away.points + calculateTable(match.awayScore, match.homeScore) : calculateTable(match.awayScore, match.homeScore)
-					}
-				];
+					const elseTeam = team.filter(e => e.id !== match.homeTeamId && e.id !== match.awayTeamId);
+					const home = team.find(e => e.id === match.homeTeamId);
+					const away = team.find(e => e.id === match.awayTeamId);
+					team = [
+						...elseTeam,
+						{
+							...home,
+							games: home.games ? home.games + 1  : 1,
+							goalsScored: home.goalsScored ? home.goalsScored + match.homeScore : match.homeScore,
+							goalsConceded: home.goalsConceded ? home.goalsConceded + match.awayScore : match.awayScore,
+							goalsDifference: home.goalsDifference ? home.goalsDifference + (match.homeScore - match.awayScore) : (match.homeScore - match.awayScore),
+							points: home.points ? home.points + calculateTable(match.homeScore, match.awayScore) : calculateTable(match.homeScore, match.awayScore)
+						},
+						{
+							...away,
+							games: away.games ? away.games + 1  : 1,
+							goalsScored: away.goalsScored ? away.goalsScored + match.awayScore : match.awayScore,
+							goalsConceded: away.goalsConceded ? away.goalsConceded + match.homeScore : match.homeScore,
+							goalsDifference: away.goalsDifference ? away.goalsDifference + (match.awayScore - match.homeScore) : (match.awayScore - match.homeScore),
+							points: away.points ? away.points + calculateTable(match.awayScore, match.homeScore) : calculateTable(match.awayScore, match.homeScore)
+						}
+					];
+				})
 			})
-		})
-		localStorage.setItem('tableDataTeam', JSON.stringify(team));
-		setSaveButton(true);
+			localStorage.setItem('tableDataTeam', JSON.stringify(team));
+			setIsDisabled(true);
+			setSelectedOptions([]);
+			nextDay();
+			toaster.push(
+				<Message showIcon type="success" header="Success" duration="2000">
+					Results saved!
+				</Message>, {placement: 'topCenter'});
+		}
+		else {
+			toaster.push(
+				<Message showIcon type="error" header="Error" duration="2000">
+				Fields are empty!</Message>, {placement: 'topCenter'});
+		}
+
+
 	}; // Set items from input data to locale storage
+
+
+	const nextDay = () => {
+		setSelectedMatchDay(selectedMatchDay + 1)
+	} // Function to link on next day after fill previous
 
 
 	const refill = () => {
@@ -87,7 +118,7 @@ const InputData = () => {
 		if (daysData) {
 			const matchDayData = matchesData.find(day => day.selectedMatchDay === selectedMatchDay);
 			if (matchDayData) {
-				setSaveButton(true);
+				setIsDisabled(true);
 				setMatches(matchDayData.matches);
 			} else {
 				const newCheck = [];
@@ -95,7 +126,7 @@ const InputData = () => {
 					newCheck.push({matchId: '', homeTeamId: '', homeScore: '', awayTeamId: '', awayScore: '', games: ''})
 				}
 				setMatches(newCheck);
-				setSaveButton(false);
+				setIsDisabled(false);
 			}
 		} else {
 			const newCheck = [];
@@ -103,9 +134,9 @@ const InputData = () => {
 				newCheck.push({matchId: '', homeTeamId: '', homeScore: '', awayTeamId: '', awayScore: '', games: ''})
 			}
 			setMatches(newCheck);
-			setSaveButton(false);
+			setIsDisabled(false);
 		}
-	}
+	} // Function to refill data
 
 
 	useEffect(()=> {
@@ -140,6 +171,7 @@ const InputData = () => {
 	const deleteData = () => {
 		localStorage.clear();
 		refill();
+		setSelectedOptions([]);
 		handleClose();
 		toaster.push(
 			<Message showIcon type="success" header="Success" duration="2000">
@@ -162,18 +194,12 @@ const InputData = () => {
 	}  // Show image with item team
 
 
-	const onChangeInput = (value, event) => {
-
-	}
-
-
-
 
 	return (
 		<div className="input-table">
 			<div className="input-results">
 				<div className="match-day">
-					<h2>Match Day #</h2>
+					<p className="title-matchday">Match Day </p>
 					<SelectPicker
 						data={daysData}
 						value={selectedMatchDay}
@@ -181,6 +207,8 @@ const InputData = () => {
 						searchable={true}
 						className="match-day-picker"
 					/>
+						<p className="title-date">Date:&nbsp;</p>
+						<DatePicker />
 				</div>
 				{
 					matches.map((match, index) => (
@@ -190,7 +218,7 @@ const InputData = () => {
 								className='choose-team'
 								data={selectPickerData}
 								value={match.homeTeamId}
-								disabled={saveButton}
+								disabled={isDisabled}
 								disabledItemValues={selectedOptions}
 								placeholder="Select home team"
 								placement={"auto"}
@@ -209,19 +237,19 @@ const InputData = () => {
 								// placeholder={0}
 								min={0}
 								value={match.homeScore}
-								disabled={saveButton}
+								disabled={isDisabled}
 								onChange={(value) => {
 									const newArray = [...matches];
 									newArray[index].homeScore = !isNaN(Number(value)) ? Number(value) : null;
 									setMatches(newArray);
-								}}/>-
+								}}/><b>:</b>
 							<InputNumber
 								className="input-score"
 								defaultValue={0}
 								// placeholder={0}
 								min={0}
 								value={match.awayScore}
-								disabled={saveButton}
+								disabled={isDisabled}
 								onChange={(value) => {
 									const newArray = [...matches];
 									newArray[index].awayScore = !isNaN(Number(value)) ? Number(value) : null;
@@ -232,7 +260,7 @@ const InputData = () => {
 								className='choose-team'
 								data={selectPickerData}
 								value={match.awayTeamId}
-								disabled={saveButton}
+								disabled={isDisabled}
 								disabledItemValues={selectedOptions}
 								placeholder="Select away team"
 								searchable
@@ -254,14 +282,14 @@ const InputData = () => {
 				<Button
 					className="button"
 					onClick={submitResults}
-					disabled={saveButton}
+					disabled={isDisabled}
 					style={{backgroundColor: "green"}}
 				><CheckIcon/>&nbsp;Submit
 				</Button>
 				<Button
 					style={{backgroundColor: "red"}}
 					className="button"
-					onClick={handleOpen}><DeleteForeverIcon/>&nbsp;Delete
+					onClick={handleOpen}><DeleteForeverIcon/>&nbsp;Clear
 				</Button>
 				<Modal backdrop="static" role="alertdialog" open={open} onClose={handleClose} size="xs">
 					<Modal.Body>
