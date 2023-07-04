@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import { Form, ButtonToolbar, Button, Input, Modal } from 'rsuite';
+import { Form, Button, Input, Modal } from 'rsuite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import '../styles/LoginPage.css';
-import LoginIcon from "@mui/icons-material/Login";
 
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 
@@ -29,16 +27,15 @@ const LoginPage = () => {
 		setOpen(true);
 	};
 
+
 	const handleEmailChange = (event) => {
 		const value = event.target;
 		setEmail(value);
 	};
-
 	const handlePasswordChange = (event) => {
 		const value = event.target;
 		setPassword(value);
 	};
-
 	const handleShowPasswordChange = () => {
 		setShowPassword(!showPassword);
 	};
@@ -95,6 +92,7 @@ const LoginPage = () => {
 					</div>
 				</div>
 				<Button size="lg" appearance="primary" type="submit" className="btn-login" onClick={enterLogin}>Login</Button>
+			</form>
 				<hr/>
 				<p>Do not have any account:</p>
 				<div className="signup-modal">
@@ -141,7 +139,7 @@ const LoginPage = () => {
 					</Modal>
 					<Button onClick={handleOpen}>Registration</Button>
 				</div>
-			</form>
+
 		</div>
 	);
 };

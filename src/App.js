@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Table from "./pages/Table"
 import Input from "./pages/InputData";
 import Results from "./pages/Results";

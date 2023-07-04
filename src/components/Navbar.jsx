@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
-import { Button, Input, InputGroup } from 'rsuite';
+import { Input, InputGroup } from 'rsuite';
 import SearchIcon from '@rsuite/icons/Search';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import TableChartIcon from '@mui/icons-material/TableChart';
@@ -12,24 +12,19 @@ import "../styles/Navbar.css";
 
 
 const Navbar = () => {
-	const  [openLinks, setOpenLinks] = useState(false);
-	const toggleNavbar = () => {
-		setOpenLinks(!openLinks)
-	}
-
+	const [openLinks, setOpenLinks] = useState(false);
 	const [value, setValue] = useState('');
+	const toggleNavbar = () => {setOpenLinks(!openLinks)};
 
 	const onSearch = (searchTerm) => {
 		console.log('search:', searchTerm)
-	}
+	};
 
 	const handleChange = (e) => {
 		if(e.key === 'enter'){
 			console.log('value:', value)
 		}
-	}
-
-
+	};
 
 
 	return (

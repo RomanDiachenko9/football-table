@@ -3,7 +3,6 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(90deg, rgba(175,191,203,1) 0%, rgba(51,130,193,1) 50%);
 }
 
@@ -42,7 +41,6 @@ body {
     font-family: sans-serif;
 }
 
-
 .th {
     display: flex;
     align-items: center;
@@ -59,7 +57,6 @@ body {
     font-weight: bold;
 }
 
-
 .table-column, .table-header {
     display: flex;
     justify-content: center;
@@ -74,7 +71,6 @@ body {
     font-family: "Apple SD Gothic Neo";
 }
 
-
 .place-col {
     max-width: 40px;
     min-width: 40px;
@@ -84,7 +80,6 @@ body {
     cursor: pointer;
     border: 1px solid black;
 }
-
 
 .team-item {
     width: 30px;

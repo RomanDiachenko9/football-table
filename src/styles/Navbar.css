@@ -58,6 +58,7 @@
 .navbar #open {
     padding-left: 0;
 }
+
 .navbar #open img {
     display: none;
 }
@@ -93,7 +94,6 @@ h5 {
 .navbar #open h5 {
     display: none;
 }
-
 
 
 
@@ -135,7 +135,4 @@ h5 {
     .hiddenLinks {
         display: none;
     }
-    /*.navbar .rightSide .searchGroup {*/
-    /*    display: none;*/
-    /*}*/
 }

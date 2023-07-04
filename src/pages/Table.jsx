@@ -3,7 +3,7 @@ import TableData from "../components/TableData";
 import {teams} from "../helpers/teams";
 import ArrowDown from '@rsuite/icons/ArrowDown';
 import ArrowUp from '@rsuite/icons/ArrowUp';
-import '../styles/Table.css'
+import '../styles/Table.css';
 
 
 const Table = () => {
@@ -46,8 +46,6 @@ const Table = () => {
 	}; // Function to sort data in the table
 
 
-
-
 	return (
 			<div className="table">
 				<div className="table-container">
@@ -70,16 +68,19 @@ const Table = () => {
 							className="th"
 							onClick={() => sortData('games', sortedData)}>
 							Games
+							{sortBy.field === 'games' && sortBy.direction === 'down' ?  <ArrowUp size="sm"/> : <ArrowDown size="sm"/>}
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('goalsScored', sortedData)}>
 							GS
+							{sortBy.field === 'goalsScored' && sortBy.direction === 'down' ?  <ArrowUp size="sm"/> : <ArrowDown size="sm"/>}
 						</div>
 						<div
 							className="th"
 							onClick={() => sortData('goalsConceded', sortedData)}>
 							GC
+							{sortBy.field === 'goalsConceded' && sortBy.direction === 'down' ?  <ArrowUp size="sm"/> : <ArrowDown size="sm"/>}
 						</div>
 						<div
 							className="th"

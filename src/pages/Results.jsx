@@ -74,7 +74,7 @@ const Results = () => {
 											return home.id !== away.id
 												? (
 													<td key={away.id} className={getCellColor(match)}>
-														<h7>{score}</h7>
+														<h6>{score}</h6>
 													</td>
 												)
 												: (

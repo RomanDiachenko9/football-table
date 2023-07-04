@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import { Link } from "react-router-dom";
 import {teams} from '../helpers/teams';
-import {Button, SelectPicker, Message, Modal, useToaster, InputNumber, DatePicker, Panel, Placeholder} from "rsuite";
+import {Button, SelectPicker, Message, Modal, useToaster, InputNumber, DatePicker} from "rsuite";
 import RemindIcon from '@rsuite/icons/legacy/Remind';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -17,6 +17,7 @@ const InputData = () => {
 	const [isDisabled, setIsDisabled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const toaster = useToaster();
+
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
@@ -34,20 +35,19 @@ const InputData = () => {
 	}; // Function for select unique team in select options
 
 
-	const emptyFieldsValidations = () => {
-		const array = [];
-		matches.forEach(match => {
-			for (const [value] of Object.entries(match)) {
-				array.push(typeof value === "string" ? !!value : true)
-			}
-		})
-		return array.every(e => e === true);
-	}
-
+	// const emptyFieldsValidations = () => {
+	// 	const array = [];
+	// 	matches.forEach(match => {
+	// 		for (const [value] of Object.entries(match)) {
+	// 			array.push(typeof value === "string" ? !!value : true)
+	// 		}
+	// 	})
+	// 	return array.every(e => e === true);
+	// }
 
 
 	const submitResults = () => {
-		if(emptyFieldsValidations()) {
+		if(selectedOptions.length === teams.length) {
 			const matchesData = JSON.parse(localStorage.getItem('matchDays'));
 			const matchDayData = { selectedMatchDay, matches: matches};
 			let dayData;
@@ -144,7 +144,6 @@ const InputData = () => {
 	}, [selectedMatchDay]);
 
 
-
 	const calculateTable = (goalsScored, goalsConceded) => {
 		let points = 0;
 		if (goalsScored > goalsConceded) {
@@ -192,7 +191,6 @@ const InputData = () => {
 		}
 		return <TeamImage data={data}/>
 	}  // Show image with item team
-
 
 
 	return (
