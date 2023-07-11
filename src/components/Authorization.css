@@ -1,0 +1,32 @@
+.password-visibility {
+    display: flex;
+    flex-direction: row;
+}
+
+.password-visibility svg{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 5px;
+}
+
+.password-visibility svg:hover{
+    opacity: 10%;
+}
+
+.login-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-toolbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-toolbar p{
+    padding-top: 20px;
+}
