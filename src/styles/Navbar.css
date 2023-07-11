@@ -58,7 +58,6 @@
 .navbar #open {
     padding-left: 0;
 }
-
 .navbar #open img {
     display: none;
 }
@@ -94,6 +93,14 @@ h5 {
 .navbar #open h5 {
     display: none;
 }
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
 
 
 

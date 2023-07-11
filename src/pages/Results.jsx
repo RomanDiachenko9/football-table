@@ -46,48 +46,50 @@ const Results = () => {
 		<div className="container-schedule">
 			<div className="home-team-title">
 				<table>
-					<tr className="away-team-column">
-						<td></td>
-						{
-							teams.map((val, key) => (
-								<td>
-									<div className="away-title-team">
-										<img title={val.name} style={{width: 25, height: 25}} src={val.icon}/>
-									</div>
-								</td>
-							))
-						}
-					</tr>
-					{
-						teams.map((home, key) => {
-							return (
-								<tr className="away-team-column" key={home.id}>
+					<tbody>
+						<tr className="away-team-column">
+							<td></td>
+							{
+								teams.map((val, key) => (
 									<td>
 										<div className="away-title-team">
-											<img title={home.name} style={{width: 25, height: 25}} src={home.icon}/>
+											<img title={val.name} style={{width: 25, height: 25}} src={val.icon}/>
 										</div>
 									</td>
-									{
-										teams.map((away, key) => {
-											const match = scheduleData.get(`${home.id}-${away.id}`);
-											const score = match ? `${match.homeScore}-${match.awayScore}` : '-';
-											return home.id !== away.id
-												? (
-													<td key={away.id} className={getCellColor(match)}>
-														<h6>{score}</h6>
-													</td>
-												)
-												: (
-													<td key={away.id} className="team-item team-item-not-exist">
-														<div />
-													</td>
-												)
-										})
-									}
-								</tr>
-							)
-						})
-					}
+								))
+							}
+						</tr>
+						{
+							teams.map((home, key) => {
+								return (
+									<tr className="away-team-column" key={home.id}>
+										<td>
+											<div className="away-title-team">
+												<img title={home.name} style={{width: 25, height: 25}} src={home.icon}/>
+											</div>
+										</td>
+										{
+											teams.map((away, key) => {
+												const match = scheduleData.get(`${home.id}-${away.id}`);
+												const score = match ? `${match.homeScore}-${match.awayScore}` : '-';
+												return home.id !== away.id
+													? (
+														<td key={away.id} className={getCellColor(match)}>
+															<h6>{score}</h6>
+														</td>
+													)
+													: (
+														<td key={away.id} className="team-item team-item-not-exist">
+															<div />
+														</td>
+													)
+											})
+										}
+									</tr>
+								)
+							})
+						}
+					</tbody>
 				</table>
 				<hr/>
 				<div className="schedule-description">

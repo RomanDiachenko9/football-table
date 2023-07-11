@@ -1,7 +1,7 @@
 .App {
     width: 100%;
-    height: auto;
-    display: flex;
+    height: 120vh;
+    /*display: flex;*/
     flex-direction: column;
     background: linear-gradient(90deg, rgba(175,191,203,1) 0%, rgba(51,130,193,1) 50%);
 }
@@ -14,7 +14,7 @@ body {
 }
 
 .table {
-    margin: 120px 0 60px 0;
+    padding: 120px 0 60px 0;
     display: flex;
     justify-content: center;
     height: 100%;
@@ -69,6 +69,11 @@ body {
     color: black;
     cursor: pointer;
     font-family: "Apple SD Gothic Neo";
+}
+
+.table-column:hover {
+    /*background-color: bisque;*/
+    opacity: 25%;
 }
 
 .place-col {

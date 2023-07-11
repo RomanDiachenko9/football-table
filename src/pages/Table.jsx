@@ -46,6 +46,8 @@ const Table = () => {
 	}; // Function to sort data in the table
 
 
+
+
 	return (
 			<div className="table">
 				<div className="table-container">

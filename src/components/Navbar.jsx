@@ -1,29 +1,29 @@
 import React, {useState} from 'react';
+import Authorization from "../pages/Authorization";
 import { Link } from "react-router-dom";
-import { Input, InputGroup } from 'rsuite';
+import {Input, InputGroup} from 'rsuite';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SearchIcon from '@rsuite/icons/Search';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import InputIcon from '@mui/icons-material/Input';
 import ScheduleIcon from '@mui/icons-material/Schedule';
-import LoginIcon from '@mui/icons-material/Login';
 import Logo from '../assets/img/logo.svg';
 import "../styles/Navbar.css";
+
 
 
 const Navbar = () => {
 	const [openLinks, setOpenLinks] = useState(false);
 	const [value, setValue] = useState('');
 	const toggleNavbar = () => {setOpenLinks(!openLinks)};
+	const [isModalOpen, setOpenModal] = useState(false);
+	const handleModalClose = () => {setOpenModal(false);};
+	const handleModalOpen = () => {setOpenModal(true)};
+
 
 	const onSearch = (searchTerm) => {
 		console.log('search:', searchTerm)
-	};
-
-	const handleChange = (e) => {
-		if(e.key === 'enter'){
-			console.log('value:', value)
-		}
 	};
 
 
@@ -36,7 +36,6 @@ const Navbar = () => {
 					<Link title="Input" to="/input"><InputIcon/></Link>
 					<Link title="Table" to="/table"><TableChartIcon/></Link>
 					<Link title="Results" to="/results"><ScheduleIcon/></Link>
-					<Link title="Login" to="/login"><LoginIcon/></Link>
 				</div>
 			</div>
 			<div className="rightSide">
@@ -45,15 +44,23 @@ const Navbar = () => {
 				<Link title="Results" to="/results">Results</Link>
 				<div className="searchGroup">
 					<InputGroup style={{width: 120, height: 30}}>
-						<Input type="text" placeholder="Search..." value={value} onChange={setValue} onKeyPress={handleChange}/>
+						<Input type="text" placeholder="Search..." value={value} onChange={setValue}/>
 						<SearchIcon style={{width: 40}} onClick={() => {onSearch(value)}}/>
 					</InputGroup>
 				</div>
-				<Link title="Login" to="/login"><LoginIcon/></Link>
 				<button onClick={toggleNavbar}>
 					<ReorderIcon/>
 				</button>
 			</div>
+			<div className="login-btn">
+				<AccountBoxIcon
+					onClick={handleModalOpen}
+					sx={{color: "white"}}/>
+			</div>
+
+			{isModalOpen && (
+				<Authorization handleModalClose={handleModalClose} />
+			)}
 		</div>
 	);
 };

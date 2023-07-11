@@ -14,15 +14,22 @@ const InputData = () => {
 	const [matches, setMatches] = useState([]);
 	const [selectedMatchDay, setSelectedMatchDay] = useState(1);
 	const [selectedOptions, setSelectedOptions] = useState([]);
+	const [inputValues, setInputValues] = useState([]);
 	const [isDisabled, setIsDisabled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const toaster = useToaster();
-
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
 
 	const selectPickerData = teams.map(team => ({ label: team.name, value: team.id, img: team.icon}));
+
+
+	const handleInputChange = (value) => {
+		inputValues.push(value);
+		setInputValues(inputValues);
+	}
+
 
 
 	const handleOptionChange = (value) => {
@@ -34,16 +41,6 @@ const InputData = () => {
 		}
 	}; // Function for select unique team in select options
 
-
-	// const emptyFieldsValidations = () => {
-	// 	const array = [];
-	// 	matches.forEach(match => {
-	// 		for (const [value] of Object.entries(match)) {
-	// 			array.push(typeof value === "string" ? !!value : true)
-	// 		}
-	// 	})
-	// 	return array.every(e => e === true);
-	// }
 
 
 	const submitResults = () => {
@@ -172,6 +169,7 @@ const InputData = () => {
 		refill();
 		setSelectedOptions([]);
 		handleClose();
+		setSelectedMatchDay(1);
 		toaster.push(
 			<Message showIcon type="success" header="Success" duration="2000">
 				Data is deleted successfully.
@@ -193,6 +191,7 @@ const InputData = () => {
 	}  // Show image with item team
 
 
+
 	return (
 		<div className="input-table">
 			<div className="input-results">
@@ -205,8 +204,6 @@ const InputData = () => {
 						searchable={true}
 						className="match-day-picker"
 					/>
-						<p className="title-date">Date:&nbsp;</p>
-						<DatePicker />
 				</div>
 				{
 					matches.map((match, index) => (
@@ -232,25 +229,26 @@ const InputData = () => {
 							<InputNumber
 								className="input-score"
 								defaultValue={0}
-								// placeholder={0}
 								min={0}
 								value={match.homeScore}
 								disabled={isDisabled}
 								onChange={(value) => {
 									const newArray = [...matches];
 									newArray[index].homeScore = !isNaN(Number(value)) ? Number(value) : null;
+									handleInputChange(value);
 									setMatches(newArray);
-								}}/><b>:</b>
+								}}
+							/><b>:</b>
 							<InputNumber
 								className="input-score"
 								defaultValue={0}
-								// placeholder={0}
 								min={0}
 								value={match.awayScore}
 								disabled={isDisabled}
 								onChange={(value) => {
 									const newArray = [...matches];
 									newArray[index].awayScore = !isNaN(Number(value)) ? Number(value) : null;
+									handleInputChange(value);
 									setMatches(newArray);
 								}}
 							/>

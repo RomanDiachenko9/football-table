@@ -4,7 +4,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import '../styles/LoginPage.css';
 
-const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
+// const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
@@ -54,49 +54,47 @@ const LoginPage = () => {
 	}
 
 	return (
-		<div className="login-container">
-			<h1 className="login-heading">Login</h1>
-			<form onSubmit={handleLogin}>
-				<div className="form-group email">
-					<label htmlFor="email">Email:</label>
-					<Input
-						type="text"
-						id="email"
-						value={email}
-						onChange={handleEmailChange}
-						className={`form-control ${!isValidEmail && 'error'}`}
-						style={{width: 240}}
-					/>
-					{!isValidEmail && <p className="error-message">Please enter a valid email</p>}
-				</div>
-				<div className="form-group password">
-					<label htmlFor="password">Password:</label>
-					<div className="password-input-container">
-						<Input
-							type={showPassword ? 'text' : 'password'}
-							id="password"
-							value={password}
-							onChange={handlePasswordChange}
-							className="form-control"
-							style={{width: 200}}
-						/>
-						<div className="password-visibility-icon">
-							{showPassword ?
-								<VisibilityIcon
-								onClick={handleShowPasswordChange}
-								onChange={showPassword}/> :
-								<VisibilityOffIcon
-								onClick={handleShowPasswordChange}
-								onChange={showPassword}/>}
-						</div>
-					</div>
-				</div>
-				<Button size="lg" appearance="primary" type="submit" className="btn-login" onClick={enterLogin}>Login</Button>
-			</form>
-				<hr/>
-				<p>Do not have any account:</p>
-				<div className="signup-modal">
-					<Modal open={open} onClose={handleClose} size="xs">
+		// <div className="login-container">
+		// 	<h1 className="login-heading">Login</h1>
+		// 	{/*<form onSubmit={handleLogin}>*/}
+		// 	{/*	<div className="form-group email">*/}
+		// 	{/*		<label htmlFor="email">Email:</label>*/}
+		// 	{/*		<Input*/}
+		// 	{/*			type="text"*/}
+		// 	{/*			id="email"*/}
+		// 	{/*			value={email}*/}
+		// 	{/*			onChange={handleEmailChange}*/}
+		// 	{/*			className={`form-control ${!isValidEmail && 'error'}`}*/}
+		// 	{/*			style={{width: 240}}*/}
+		// 	{/*		/>*/}
+		// 	{/*		{!isValidEmail && <p className="error-message">Please enter a valid email</p>}*/}
+		// 	{/*	</div>*/}
+		// 	{/*	<div className="form-group password">*/}
+		// 	{/*		<label htmlFor="password">Password:</label>*/}
+		// 	{/*		<div className="password-input-container">*/}
+		// 	{/*			<Input*/}
+		// 	{/*				type={showPassword ? 'text' : 'password'}*/}
+		// 	{/*				id="password"*/}
+		// 	{/*				value={password}*/}
+		// 	{/*				onChange={handlePasswordChange}*/}
+		// 	{/*				className="form-control"*/}
+		// 	{/*				style={{width: 200}}*/}
+		// 	{/*			/>*/}
+		// 	{/*			<div className="password-visibility-icon">*/}
+		// 	{/*				{showPassword ?*/}
+		// 	{/*					<VisibilityIcon*/}
+		// 	{/*					onClick={handleShowPasswordChange}*/}
+		// 	{/*					onChange={showPassword}/> :*/}
+		// 	{/*					<VisibilityOffIcon*/}
+		// 	{/*					onClick={handleShowPasswordChange}*/}
+		// 	{/*					onChange={showPassword}/>}*/}
+		// 	{/*			</div>*/}
+		// 	{/*		</div>*/}
+		// 	{/*	</div>*/}
+		// 	{/*	<Button size="lg" appearance="primary" type="submit" className="btn-login" onClick={enterLogin}>Login</Button>*/}
+		// 	{/*</form>*/}
+		// 		<div className="signup-modal">
+					<Modal open={open} onClose={handleOpen} size="xs">
 						<Modal.Header>
 							<Modal.Title>Registration</Modal.Title>
 						</Modal.Header>
@@ -122,10 +120,6 @@ const LoginPage = () => {
 									              className="signup-password"/>
 									</div>
 								</Form.Group>
-								<Form.Group controlId="textarea-9">
-									<Form.ControlLabel>Textarea</Form.ControlLabel>
-									<Form.Control rows={5} name="textarea" accepter={Textarea} />
-								</Form.Group>
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>
@@ -137,10 +131,9 @@ const LoginPage = () => {
 							</Button>
 						</Modal.Footer>
 					</Modal>
-					<Button onClick={handleOpen}>Registration</Button>
-				</div>
-
-		</div>
+		// 			<Button onClick={handleOpen}>Registration</Button>
+		// 		</div>
+		// </div>
 	);
 };
 
