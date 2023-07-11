@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {Button, ButtonToolbar, Form, Modal, Schema} from "rsuite";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import "../components/Authorization.css";
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -33,6 +36,8 @@ const TextField = React.forwardRef((props, ref) => {
 
 const Authorization = ({ handleModalClose }) => {
 	const formRef = React.useRef();
+	const [showPassword, setShowPassword] = useState(false);
+	const [showVerificationPassword, setShowVerificationPassword] = useState(false);
 	const [formError, setFormError] = React.useState({});
 	const [formValue, setFormValue] = React.useState({
 		email: '',
@@ -49,6 +54,15 @@ const Authorization = ({ handleModalClose }) => {
 		console.log(formValue, 'Form Value');
 	};
 
+	const handleShowPasswordChange = () => {
+		setShowPassword(!showPassword);
+	};
+	const handleShowVerificationPasswordChange = () => {
+		setShowVerificationPassword(!showVerificationPassword);
+	};
+
+
+
 	return (
 		<Modal open={true} onClose={handleModalClose} size="xs">
 			<Modal.Header>
@@ -63,22 +77,51 @@ const Authorization = ({ handleModalClose }) => {
 					model={model}
 				>
 					<TextField name="email" label="Email" />
-					<TextField name="password" label="Password" type="password" autoComplete="off" />
-					<TextField
-						name="verifyPassword"
-						label="Verify password"
-						type="password"
-						autoComplete="off"
-					/>
-					<hr/>
-					<ButtonToolbar>
+					<div className="password-visibility">
+						<TextField name="password"
+						           label="Password"
+						           type={showVerificationPassword ? 'text' : 'password'}
+						           autoComplete="off" />
+						{showVerificationPassword ?
+							<VisibilityIcon
+								onClick={handleShowVerificationPasswordChange}
+								onChange={showVerificationPassword}/> :
+							<VisibilityOffIcon
+								onClick={handleShowVerificationPasswordChange}
+								onChange={showVerificationPassword}/>}
+					</div>
+					<div className="password-visibility">
+						<TextField
+							name="verifyPassword"
+							label="Verify password"
+							type={showPassword ? 'text' : 'password'}
+							autoComplete="off"
+						/>
+						{showPassword ?
+							<VisibilityIcon
+								onClick={handleShowPasswordChange}
+								onChange={showPassword}/> :
+							<VisibilityOffIcon
+								onClick={handleShowPasswordChange}
+								onChange={showPassword}/>}
+					</div>
+					<ButtonToolbar className="button-toolbar">
 						<Button appearance="primary" onClick={handleSubmit}>
-							Submit
+							Registration
 						</Button>
 					</ButtonToolbar>
+					<hr/>
+						<div className="login-area">
+							<h6>I already have an account:</h6>
+							<Button appearance="ghost">
+								Login
+							</Button>
+						</div>
+
 				</Form>
+				<hr/>
 			</Modal.Body>
-			<Modal.Footer>
+			<Modal.Footer className="modal-footer">
 				<Button onClick={handleModalClose} appearance="primary">
 					Confirm
 				</Button>
@@ -86,6 +129,7 @@ const Authorization = ({ handleModalClose }) => {
 					Cancel
 				</Button>
 			</Modal.Footer>
+
 		</Modal>
 	);
 };
